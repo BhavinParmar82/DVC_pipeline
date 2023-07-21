@@ -1,0 +1,10 @@
+# dvc.yaml
+stages:
+  preprocess_data:
+    cmd: python src/preprocessing.py
+    deps:
+      - data/raw/Customer_Churn.csv
+      - params.yaml
+    outs:
+      - data/processed/X_scaled_data.csv
+

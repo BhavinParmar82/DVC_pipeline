@@ -1,2 +1,2 @@
 scaling:
-  scalar: StandardScaler()
+  scaler: StandardScaler
