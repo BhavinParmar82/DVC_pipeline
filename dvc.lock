@@ -1,0 +1,53 @@
+schema: '2.0'
+stages:
+  preprocess_data:
+    cmd: python src/preprocessing.py data/raw/Customer_Churn.csv data/processed/X_scaled_data.csv
+    deps:
+    - path: data/raw/Customer_Churn.csv
+      hash: md5
+      md5: f46abff29e4b99bd56a72384cf1b7902
+      size: 102919038
+    - path: params.yaml
+      hash: md5
+      md5: 843329d0d32eaed9908a0dec65b4e3f0
+      size: 91
+    - path: src/preprocessing.py
+      hash: md5
+      md5: 0f24328433415e1d027793ab60523992
+      size: 1331
+    outs:
+    - path: data/processed/X_scaled_data.csv
+      hash: md5
+      md5: 8193c8ad0caeea7e78e4a747ee21d954
+      size: 164332534
+  train:
+    cmd: python src/train.py data/processed/X_scaled_data.csv model/model.pkl
+    deps:
+    - path: data/processed/X_scaled_data.csv
+      hash: md5
+      md5: 8193c8ad0caeea7e78e4a747ee21d954
+      size: 164332534
+    - path: params.yaml
+      hash: md5
+      md5: 843329d0d32eaed9908a0dec65b4e3f0
+      size: 91
+    - path: src/train.py
+      hash: md5
+      md5: a97bbf7ebcb6ba5f12d88a98c365621b
+      size: 1713
+    outs:
+    - path: model/model.pkl
+      hash: md5
+      md5: 3b9989a99d503a20e5aacbef19882dd4
+      size: 3124041
+  evaluate:
+    cmd: python src/evaluate.py model/model.pkl
+    deps:
+    - path: model/model.pkl
+      hash: md5
+      md5: 3b9989a99d503a20e5aacbef19882dd4
+      size: 3124041
+    - path: src/evaluate.py
+      hash: md5
+      md5: fcad535f1c9628b77ccffbfc09dc4b68
+      size: 941

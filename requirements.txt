@@ -3,3 +3,4 @@ matplotlib
 pandas
 pyyamlconfig
 dvc
+click

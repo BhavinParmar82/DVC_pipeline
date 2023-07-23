@@ -1,2 +1,7 @@
 scaling:
-  scaler: StandardScaler
+  scaler : StandardScaler
+
+train:
+  seed : 12
+  ratio : 30
+  estimator : 100

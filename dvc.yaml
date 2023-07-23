@@ -1,10 +1,25 @@
 # dvc.yaml
 stages:
   preprocess_data:
-    cmd: python src/preprocessing.py
+    cmd: python src/preprocessing.py data/raw/Customer_Churn.csv data/processed/X_scaled_data.csv
     deps:
+      - src/preprocessing.py
       - data/raw/Customer_Churn.csv
       - params.yaml
     outs:
       - data/processed/X_scaled_data.csv
 
+  train:
+    cmd : python src/train.py data/processed/X_scaled_data.csv model/model.pkl
+    deps :
+    - src/train.py
+    - data/processed/X_scaled_data.csv
+    - params.yaml
+    outs:
+    - model/model.pkl
+
+  evaluate:
+    cmd: python src/evaluate.py model/model.pkl
+    deps:
+    - src/evaluate.py
+    - model/model.pkl
